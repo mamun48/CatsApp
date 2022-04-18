@@ -8,7 +8,10 @@ const catSchema = mongoose.Schema({
     },
     id:{
         type:Number,
-        require:true
+        require:true,
+        unique:true
+
+
     },
     description:{
         type:String,

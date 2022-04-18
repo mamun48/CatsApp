@@ -3,6 +3,8 @@ const catModel = require("../model/catModel")
 
 const catRoute = express.Router();
 
+
+
 catRoute.route('/')
     .post(async(req,res)=>{
         try{
@@ -78,15 +80,14 @@ catRoute.route('/:id')
         }
     })
 
-catRoute.route("/:Name")
-    .get((req,res)=>{
-        res.send(req.params.Name)
-        // try{
-        //     const result = catModel.find({name:req.params.name})
-        //     res.send(result)
-        // }catch(err){
-        //     res.send("There is server side error")
-        // }
+    catRoute.route("/:name")
+    .get(async(req,res)=>{
+        try{
+            const result = await catModel.find({id:req.body.name})
+            res.send(result)
+        }catch(err){
+            res.send("There is server side error")
+        }
     })
 
 module.exports = catRoute;
